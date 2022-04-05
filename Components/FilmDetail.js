@@ -11,15 +11,15 @@ import { getFilmDetailFromApi, getImageFromApi } from "../API/TMDBApi";
 /* import "react-json-pretty/themes/adventure_time.css"; */
 import dayjs from 'dayjs'
 import numeral from 'numeral'
-/* import { connect } from 'react-redux' */
+import { connect } from 'react-redux'
 import { Pressable } from 'react-native'
 
-/* const mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
     favoritesFilm: state.favoritesFilm,
   }
 }
- */
+
 const styles = StyleSheet.create({
   main_container: {
     flex: 1,
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   description_text: {
     fontStyle: "italic",
     color: "#666666",
-    margin: 5,
+    margin: 20,
     marginBottom: 15,
   },
   default_text: {
@@ -111,7 +111,7 @@ class FilmDetail extends React.Component {
 
   _toggleFavorite() {
     // Action Redux
-    const action = { type: "TOGGLE_FAVORITE", value: this.state.film };
+    const action = { type: "TOGGLE_FAVORITE", value: this.state.film }
     // Envoie de l'action au Store Redux
     this.props.dispatch(action)
   }
@@ -129,16 +129,16 @@ class FilmDetail extends React.Component {
           <Text style={styles.title_text}>{film.title}</Text>
           <Pressable
             style={styles.favorite}
-            onPress={() => this._toggleFavorite()}
-          >
-            <Text>{'Favoris'}</Text>
-            {/* <Text>
+            onPress={() => this._toggleFavorite()}>
+            <Text>{'Ajouter aux favoris'}</Text>
+            <Text>
               {this.props.favoritesFilm.findIndex(
                 (item) => item.id === this.state.film.id
               ) !== -1
                 ? "♥"
-                : "♡"}
-            </Text> */}
+                : "♡"
+              }
+            </Text>
           </Pressable>
 
           <Text style={styles.description_text}>{film.overview}</Text>
@@ -183,10 +183,10 @@ class FilmDetail extends React.Component {
       <View View style={styles.main_container}>
         {this._displayLoading()}
         {this._displayFilm()}
-        <Text>Détail du film id {idFilm}</Text>
+        <Text>Id du film : {idFilm}</Text>
       </View>
     )
   }
 }
 
-export default /* connect(mapStateToProps) */FilmDetail;
+export default connect(mapStateToProps)(FilmDetail)

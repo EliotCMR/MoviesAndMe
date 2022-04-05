@@ -3,7 +3,7 @@ import FilmItem from './FilmItem'
 import { View } from 'react-native'
 import { FlatList } from 'react-native'
 import { StyleSheet } from 'react-native'
-/* import { connect } from 'react-redux'*/
+import { connect } from 'react-redux'
 import { withNavigation } from 'react-navigation'
 /* import JSONPretty from 'react-json-pretty' */
 
@@ -16,7 +16,7 @@ class FilmList extends React.Component {
     }
   }
 
-  _displayDetailForFilm = (idFilm, listId, isFilmFavorite = false) => {
+  _displayDetailForFilm = (idFilm, isFilmFavorite = false) => {
     this.props.navigation.navigate('FilmDetail', {
       idFilm: idFilm,
       isFilmFavorite: isFilmFavorite,
@@ -61,11 +61,11 @@ class FilmList extends React.Component {
             <FilmItem
               film={item}
               displayDetailForFilm={this._displayDetailForFilm}
-              /* isFilmFavorite={
+              isFilmFavorite={
                 this.props.favoritesFilm.findIndex(
                   (favori) => item.id === favori.id
                 ) !== -1
-              } */
+              }
             />
           )}
         />
@@ -97,10 +97,10 @@ const styles = StyleSheet.create({
   },
 })
 
-/* const mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
     favoritesFilm: state.favoritesFilm,
   }
-} */
+}
 
-export default withNavigation (FilmList)
+export default withNavigation (connect(mapStateToProps)(FilmList))

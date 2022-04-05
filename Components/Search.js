@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, TextInput, Button, SafeAreaView, StyleSheet, FlatList, Text } from 'react-native'
+import { View, TextInput, Button, SafeAreaView, StyleSheet } from 'react-native'
 import { getFilmsFromApiWithSearchedText } from '../API/TMDBApi'
 import FilmList from '../Components/FilmList'
 
@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     flex: 1,
   },
+
   button: {
     marginLeft: 5,
     marginRight: 5,
@@ -47,7 +48,7 @@ class Search extends React.Component {
     this.totalPages = 0
   }
 
-  _loadFilms = (doResetList = false) => {
+  _loadFilms = () => {
     if (this.searchedText.length == 0 || this.state.isLoading) return
     this.setState({ isLoading: true})
     getFilmsFromApiWithSearchedText(this.searchedText, this.page + 1).then(
@@ -78,7 +79,7 @@ class Search extends React.Component {
         " / Nombre de films : " +
         this.state.films.length
       )
-      this._loadFilms()
+        this._loadFilms()
       }
     )
   }
@@ -88,9 +89,10 @@ class Search extends React.Component {
   }
 
   render() {
-    //console.log('RENDER')
+    console.log('RENDER')
     return (
       <SafeAreaView style={{ marginTop: 20, flex: 1 }}>
+        {' '}
         <View style={{ flex: 1 }} contentContainerStyle={{ flex: 1 }}>
         <TextInput
           style={styles.textinput}
@@ -98,17 +100,16 @@ class Search extends React.Component {
           onChangeText={(text) => this._searchedTextInputChanged(text)}
             onSubmitEditing={() => this._searchFilms()}
           />
-                <Button title="Rechercher" onPress={() => this._loadFilms(true)} />
-
-        <FilmList
-          films={this.state.films}
-          loadFilms={() => this._loadFilms()}
-          page={this.page}
-          totalPages={this.totalPages}
-          favoriteList={false}
-          />
+          <Button title="Rechercher" onPress={() => this._loadFilms(true)} />
+          <FilmList
+            films={this.state.films}
+            loadFilms={() => this._loadFilms()}
+            page={this.page}
+            totalPages={this.totalPages}
+            favoriteList={false}
+            />
         </View>
-        </SafeAreaView>
+      </SafeAreaView>
     )
   }
 }
