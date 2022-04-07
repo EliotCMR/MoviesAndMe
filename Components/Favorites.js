@@ -3,8 +3,6 @@ import { View,  SafeAreaView } from 'react-native'
 import FilmList from './FilmList'
 import { connect } from 'react-redux'
 
-
-
 const mapStateToProps = (state) => {
   return {
     favoritesFilm: state.favoritesFilm,

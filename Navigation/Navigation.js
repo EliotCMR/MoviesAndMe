@@ -6,16 +6,22 @@ import FilmDetail from '../Components/FilmDetail'
 import Favorites from '../Components/Favorites'
 
 const SearchStackNavigator = createStackNavigator({
+
   Search: {
-        screen: Search ,
+    screen: Search ,
     navigationOptions: {
       title: 'Rechercher',
     },
+
   },
-    FilmDetail: {
-        screen: FilmDetail,
+  FilmDetail: {
+    screen: FilmDetail,
+    navigationOptions: {
+      title: 'Détails du film',
+    }
   },
 })
+
 
 const tabBarOptions = {
   activeBackgroundColor: "#DDDDDD", // Couleur d'arrière-plan de l'onglet sélectionné
@@ -41,6 +47,9 @@ const FavoritesStackNavigator = createStackNavigator({
   },
   FilmDetail: {
     screen: FilmDetail,
+    navigationOptions: {
+      title: 'Détails du film',
+    }
   }
 })
 

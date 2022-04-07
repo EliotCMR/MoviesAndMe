@@ -88,10 +88,14 @@ class Search extends React.Component {
     this.searchedText = text
   }
 
+  _refreshPage(){
+    window.location.reload();
+}
+
   render() {
     console.log('RENDER')
     return (
-      <SafeAreaView style={{ marginTop: 20, flex: 1 }}>
+      <SafeAreaView style={{ marginTop: 10, flex: 1 }}>
         {' '}
         <View style={{ flex: 1 }} contentContainerStyle={{ flex: 1 }}>
         <TextInput
@@ -107,7 +111,8 @@ class Search extends React.Component {
             page={this.page}
             totalPages={this.totalPages}
             favoriteList={false}
-            />
+          />
+          <Button title="↩️" onPress={() => this._refreshPage(true) } Reload />
         </View>
       </SafeAreaView>
     )

@@ -103,4 +103,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default withNavigation (connect(mapStateToProps)(FilmList))
+export default withNavigation(connect(mapStateToProps)(FilmList))
