@@ -112,7 +112,7 @@ class Search extends React.Component {
             totalPages={this.totalPages}
             favoriteList={false}
           />
-          <Button title="↩️" onPress={() => this._refreshPage(true) } Reload />
+          <Button title="Recharger ↩️" onPress={() => this._refreshPage(true) } Reload />
         </View>
       </SafeAreaView>
     )
